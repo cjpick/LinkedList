@@ -12,6 +12,15 @@ class LinkedList<A> {
         self.next = next
     }
     
+    func appendedToStart(_ value:A)->LinkedList<A> {
+        return appendedToStart(LinkedList(value))
+    }
+    
+    func appendedToStart(_ link:LinkedList<A>)->LinkedList<A> {
+        link.next = self
+        return link
+    }
+    
     func appendToTail(_ value:A) {
         appendToTail(LinkedList(value))
     }
@@ -40,4 +49,4 @@ extension LinkedList: CustomStringConvertible {
 
 var list = LinkedList("First")
 list.appendToTail("Second")
-list = LinkedList("Third", next: list)
+list = list.appendedToStart("Third")
